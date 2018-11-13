@@ -12,7 +12,6 @@ public class AddFractionsTest {
         Assert.assertEquals(0, sum.intValue());
     }
 
-    @Ignore("refactoring")
     @Test
     public void notZeroPlusZero() throws Exception {
         Fraction sum = new Fraction(4).plus(new Fraction(0));
@@ -27,7 +26,7 @@ public class AddFractionsTest {
         }
 
         public Fraction plus(Fraction zero) {
-            return new Fraction(0);
+            return this;
         }
 
         public int intValue() {
