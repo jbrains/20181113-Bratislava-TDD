@@ -36,7 +36,14 @@ public class AddFractionsTest {
         Assert.assertEquals(3, sum.getNumerator());
         Assert.assertEquals(5, sum.getDenominator());
     }
+    @Test
+    public void relativelyPrimeDenominatorsWithoutReducing() throws Exception {
+        Fraction sum = new Fraction(4, 3)
+                .plus(new Fraction(3, 4));
 
+        Assert.assertEquals(25, sum.getNumerator());
+        Assert.assertEquals(12, sum.getDenominator());
+    }
     public static class Fraction {
         private final int integerValue;
         private final int numerator;
@@ -56,9 +63,15 @@ public class AddFractionsTest {
             if (this.denominator == 1) {
                 return new Fraction(
                         this.integerValue + that.integerValue);
-            } else {
+            } else if (this.denominator == that.denominator) {
                 return new Fraction(this.integerValue + that.integerValue,
                         this.denominator);
+            }
+            else {
+                return new Fraction(
+                        this.numerator * that.denominator
+                                + that.numerator * this.denominator,
+                        this.denominator * that.denominator);
             }
         }
 
