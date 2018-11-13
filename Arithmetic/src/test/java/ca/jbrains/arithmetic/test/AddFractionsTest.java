@@ -50,6 +50,9 @@ public class AddFractionsTest {
             this.numerator = numerator;
             this.denominator = denominator;
         }
+        public static Fraction parse(String text) {
+            return new Fraction(0);
+        }
 
         public Fraction plus(Fraction that) {
             return new Fraction(
