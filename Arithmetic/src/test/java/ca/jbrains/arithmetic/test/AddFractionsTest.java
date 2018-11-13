@@ -6,48 +6,37 @@ import org.junit.Test;
 public class AddFractionsTest {
     @Test
     public void zeroPlusZero() throws Exception {
-        Fraction zero = new Fraction(0);
-        Fraction sum = zero.plus(zero);
-        Assert.assertEquals(new Fraction(0), sum);
+        Assert.assertEquals(new Fraction(0), new Fraction(0).plus(new Fraction(0)));
     }
 
     @Test
     public void notZeroPlusZero() throws Exception {
-        Fraction sum = new Fraction(4).plus(new Fraction(0));
-        Assert.assertEquals(new Fraction(4), sum);
+        Assert.assertEquals(new Fraction(4), new Fraction(4).plus(new Fraction(0)));
     }
 
     @Test
     public void zeroPlusNotZero() throws Exception {
-        Fraction sum = new Fraction(0).plus(new Fraction(7));
-        Assert.assertEquals(new Fraction(7), sum);
+        Assert.assertEquals(new Fraction(7), new Fraction(0).plus(new Fraction(7)));
     }
     @Test
     public void nonZeroIntegers() throws Exception {
-        Fraction sum = new Fraction(4).plus(new Fraction(5));
-        Assert.assertEquals(new Fraction(9), sum);
+        Assert.assertEquals(new Fraction(9), new Fraction(4).plus(new Fraction(5)));
     }
 
     @Test
     public void sameDenominator() throws Exception {
-        Fraction sum = new Fraction(1, 5)
-                .plus(new Fraction(2, 5));
-
-        Assert.assertEquals(new Fraction(3, 5), sum);
+        Assert.assertEquals(new Fraction(3, 5), new Fraction(1, 5)
+                .plus(new Fraction(2, 5)));
     }
     @Test
     public void relativelyPrimeDenominatorsWithoutReducing() throws Exception {
-        Fraction sum = new Fraction(4, 3)
-                .plus(new Fraction(3, 4));
-
-        Assert.assertEquals(new Fraction(25, 12), sum);
+        Assert.assertEquals(new Fraction(25, 12), new Fraction(4, 3)
+                .plus(new Fraction(3, 4)));
     }
     @Test
     public void differentDenominatorsWithCommonFactor() throws Exception {
-        Fraction sum = new Fraction(1, 4)
-                .plus(new Fraction(1, 2));
-
-        Assert.assertEquals(new Fraction(3, 4), sum);
+        Assert.assertEquals(new Fraction(3, 4), new Fraction(1, 4)
+                .plus(new Fraction(1, 2)));
     }
     public static class Fraction {
         private final int numerator;
