@@ -50,7 +50,6 @@ public class AddFractionsTest {
         Assert.assertEquals(new Fraction(3, 4), sum);
     }
     public static class Fraction {
-        private final int integerValue;
         private final int numerator;
         private final int denominator;
 
@@ -59,7 +58,6 @@ public class AddFractionsTest {
         }
 
         public Fraction(int numerator, int denominator) {
-            this.integerValue = numerator;
             this.numerator = numerator;
             this.denominator = denominator;
         }
@@ -69,16 +67,6 @@ public class AddFractionsTest {
                     this.numerator * that.denominator
                             + that.numerator * this.denominator,
                     this.denominator * that.denominator);
-        }
-
-        public int intValue() {
-            return integerValue;
-        }
-        public int getNumerator() {
-            return numerator;
-        }
-        public int getDenominator() {
-            return denominator;
         }
 
         @Override
@@ -91,6 +79,7 @@ public class AddFractionsTest {
                 return false;
             }
         }
+
         @Override
         public int hashCode() {
             return this.numerator ^ 13 + this.denominator ^ 17;
