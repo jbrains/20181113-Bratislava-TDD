@@ -44,7 +44,6 @@ public class AddFractionsTest {
         Assert.assertEquals(new Fraction(25, 12), sum);
     }
     @Test
-    @Ignore("refactoring")
     public void differentDenominatorsWithCommonFactor() throws Exception {
         Fraction sum = new Fraction(1, 4)
                 .plus(new Fraction(1, 2));
