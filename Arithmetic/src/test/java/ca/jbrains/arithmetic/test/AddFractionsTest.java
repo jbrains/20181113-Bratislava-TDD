@@ -1,6 +1,7 @@
 package ca.jbrains.arithmetic.test;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class AddFractionsTest {
@@ -8,24 +9,24 @@ public class AddFractionsTest {
     public void zeroPlusZero() throws Exception {
         Fraction zero = new Fraction(0);
         Fraction sum = zero.plus(zero);
-        Assert.assertEquals(0, sum.intValue());
+        Assert.assertEquals(new Fraction(0), sum);
     }
 
     @Test
     public void notZeroPlusZero() throws Exception {
         Fraction sum = new Fraction(4).plus(new Fraction(0));
-        Assert.assertEquals(4, sum.intValue());
+        Assert.assertEquals(new Fraction(4), sum);
     }
 
     @Test
     public void zeroPlusNotZero() throws Exception {
         Fraction sum = new Fraction(0).plus(new Fraction(7));
-        Assert.assertEquals(7, sum.intValue());
+        Assert.assertEquals(new Fraction(7), sum);
     }
     @Test
     public void nonZeroIntegers() throws Exception {
         Fraction sum = new Fraction(4).plus(new Fraction(5));
-        Assert.assertEquals(9, sum.intValue());
+        Assert.assertEquals(new Fraction(9), sum);
     }
 
     @Test
@@ -33,16 +34,22 @@ public class AddFractionsTest {
         Fraction sum = new Fraction(1, 5)
                 .plus(new Fraction(2, 5));
 
-        Assert.assertEquals(3, sum.getNumerator());
-        Assert.assertEquals(5, sum.getDenominator());
+        Assert.assertEquals(new Fraction(3, 5), sum);
     }
     @Test
     public void relativelyPrimeDenominatorsWithoutReducing() throws Exception {
         Fraction sum = new Fraction(4, 3)
                 .plus(new Fraction(3, 4));
 
-        Assert.assertEquals(25, sum.getNumerator());
-        Assert.assertEquals(12, sum.getDenominator());
+        Assert.assertEquals(new Fraction(25, 12), sum);
+    }
+    @Test
+    @Ignore("refactoring")
+    public void differentDenominatorsWithCommonFactor() throws Exception {
+        Fraction sum = new Fraction(1, 4)
+                .plus(new Fraction(1, 2));
+
+        Assert.assertEquals(new Fraction(3, 4), sum);
     }
     public static class Fraction {
         private final int integerValue;
@@ -66,8 +73,7 @@ public class AddFractionsTest {
             } else if (this.denominator == that.denominator) {
                 return new Fraction(this.integerValue + that.integerValue,
                         this.denominator);
-            }
-            else {
+            } else {
                 return new Fraction(
                         this.numerator * that.denominator
                                 + that.numerator * this.denominator,
@@ -83,6 +89,22 @@ public class AddFractionsTest {
         }
         public int getDenominator() {
             return denominator;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other instanceof Fraction) {
+                Fraction that = (Fraction) other;
+                return this.numerator * that.denominator
+                        == that.numerator * this.denominator;
+            }
+            else {
+                return false;
+            }
+        }
+        @Override
+        public int hashCode() {
+            return this.numerator ^ 13 + this.denominator ^ 17;
         }
     }
 }
