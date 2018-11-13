@@ -10,7 +10,10 @@ public class SellOneItemTest {
     @Test
     public void productFound() throws Exception {
         Display display = new Display();
-        Sale sale = new Sale(display);
+        Sale sale = new Sale(new HashMap<String, String>() {{
+            put("12345", "EUR 7.50");
+            put("23456", "EUR 12.95");
+        }}, display);
 
         sale.onBarcode("12345");
 
@@ -20,7 +23,10 @@ public class SellOneItemTest {
     @Test
     public void anotherProductFound() throws Exception {
         Display display = new Display();
-        Sale sale = new Sale(display);
+        Sale sale = new Sale(new HashMap<String, String>() {{
+            put("12345", "EUR 7.50");
+            put("23456", "EUR 12.95");
+        }}, display);
 
         sale.onBarcode("23456");
 
@@ -30,17 +36,23 @@ public class SellOneItemTest {
     @Test
     public void productNotFound() throws Exception {
         Display display = new Display();
-        Sale sale = new Sale(display);
+        Sale sale = new Sale(new HashMap<String, String>() {{
+            put("12345", "EUR 7.50");
+            put("23456", "EUR 12.95");
+        }}, display);
 
-        sale.onBarcode("99999");
+        sale.onBarcode("::unknown barcode::");
 
-        Assert.assertEquals("Product not found: 99999", display.getText());
+        Assert.assertEquals("Product not found: ::unknown barcode::", display.getText());
     }
 
     @Test
     public void emptyBarcode() throws Exception {
         Display display = new Display();
-        Sale sale = new Sale(display);
+        Sale sale = new Sale(new HashMap<String, String>() {{
+            put("12345", "EUR 7.50");
+            put("23456", "EUR 12.95");
+        }}, display);
 
         sale.onBarcode("");
 
@@ -49,15 +61,14 @@ public class SellOneItemTest {
 
     public static class Sale {
         private Display display;
+        private final Map<String, String> pricesByBarcode;
 
-        public Sale(Display display) {this.display = display;}
+        public Sale(Map<String, String> pricesByBarcode, Display display) {
+            this.display = display;
+            this.pricesByBarcode = pricesByBarcode;
+        }
 
         public void onBarcode(String barcode) {
-            Map<String, String> pricesByBarcode = new HashMap<String, String>() {{
-                put("12345", "EUR 7.50");
-                put("23456", "EUR 12.95");
-            }};
-
             if ("".equals(barcode)) {
                 display.setText("Scanning error: empty barcode");
                 return;
