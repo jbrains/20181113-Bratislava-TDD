@@ -47,7 +47,7 @@ public class SellOneItemTest {
                 display.setText("EUR 12.95");
             }
             else {
-                display.setText("Product not found: 99999");
+                display.setText(String.format("Product not found: %s", barcode));
             }
         }
     }
