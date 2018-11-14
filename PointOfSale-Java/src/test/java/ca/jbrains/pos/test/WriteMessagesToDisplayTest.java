@@ -19,6 +19,16 @@ public class WriteMessagesToDisplayTest {
             public String formatPrice(Price price) {
                 return "::formatted price::";
             }
+
+            @Override
+            public String formatProductNotFoundMessage(String barcodeNotFound) {
+                return null;
+            }
+
+            @Override
+            public String formatScannedEmptyBarcodeMessage() {
+                return null;
+            }
         }).displayPrice(price);
         String[] lines = canvas.toString().split(System.lineSeparator());
         return lines[0];

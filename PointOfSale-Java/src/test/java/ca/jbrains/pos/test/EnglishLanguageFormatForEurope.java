@@ -23,10 +23,12 @@ public class EnglishLanguageFormatForEurope implements MessageFormat {
         return decimalFormat;
     }
 
+    @Override
     public String formatProductNotFoundMessage(String barcodeNotFound) {
         return String.format("Product not found: %s", barcodeNotFound);
     }
 
+    @Override
     public String formatScannedEmptyBarcodeMessage() {
         return "Scanning error: empty barcode";
     }
