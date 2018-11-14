@@ -10,11 +10,14 @@ import java.io.StringWriter;
 public class WriteMessagesToDisplayTest {
     @Test
     public void displayPrice() throws Exception {
+        Assert.assertEquals("EUR 7.95", formatPrice(Price.euroCents(795)));
+    }
+
+    private String formatPrice(Price price) {
         StringWriter canvas = new StringWriter();
-        new WriterDisplay(canvas).displayPrice(Price.euroCents(795));
+        new WriterDisplay(canvas).displayPrice(price);
         String[] lines = canvas.toString().split(System.lineSeparator());
-        String text = lines[0];
-        Assert.assertEquals("EUR 7.95", text);
+        return lines[0];
     }
 
     public static class WriterDisplay {
