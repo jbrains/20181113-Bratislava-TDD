@@ -14,7 +14,7 @@ public class WriteMessagesToDisplayTest {
 
     private String formattedPrice(Price price) {
         StringWriter canvas = new StringWriter();
-        new WriterDisplay(canvas).displayPrice(price);
+        new WriterDisplay(canvas, new EnglishLanguageFormatForEurope()).displayPrice(price);
         String[] lines = canvas.toString().split(System.lineSeparator());
         return lines[0];
     }
@@ -24,9 +24,9 @@ public class WriteMessagesToDisplayTest {
         private final PrintWriter out;
         private final EnglishLanguageFormatForEurope englishLanguageFormatForEurope;
 
-        public WriterDisplay(StringWriter stringWriter) {
+        public WriterDisplay(StringWriter stringWriter, EnglishLanguageFormatForEurope englishLanguageFormatForEurope) {
             out = new PrintWriter(stringWriter, true);
-            englishLanguageFormatForEurope = new EnglishLanguageFormatForEurope();
+            this.englishLanguageFormatForEurope = englishLanguageFormatForEurope;
         }
 
         public void displayPrice(Price price) {
