@@ -34,7 +34,7 @@ public class WriteMessagesToDisplayTest {
         return lines[0];
     }
 
-    public static class WriterDisplay {
+    public static class WriterDisplay implements Display {
 
         private final PrintWriter out;
         private final MessageFormat messageFormat;
@@ -46,6 +46,14 @@ public class WriteMessagesToDisplayTest {
 
         public void displayPrice(Price price) {
             out.println(messageFormat.formatPrice(price));
+        }
+
+        public void displayProductNotFoundMessage(String barcode) {
+            out.println(messageFormat.formatProductNotFoundMessage(barcode));
+        }
+
+        public void displayScannedEmptyBarcodeMessage() {
+            out.println(messageFormat.formatScannedEmptyBarcodeMessage());
         }
     }
 }

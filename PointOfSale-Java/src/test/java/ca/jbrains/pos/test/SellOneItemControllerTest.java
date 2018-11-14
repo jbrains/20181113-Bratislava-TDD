@@ -44,14 +44,6 @@ public class SellOneItemControllerTest {
         Mockito.verify(display).displayScannedEmptyBarcodeMessage();
     }
 
-    public interface Display {
-        void displayPrice(Price price);
-
-        void displayProductNotFoundMessage(String missingBarcode);
-
-        void displayScannedEmptyBarcodeMessage();
-    }
-
     public static class SellOneItemController {
         private final Catalog catalog;
         private final Display display;
