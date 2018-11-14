@@ -36,7 +36,7 @@ public class SellOneItemControllerTest {
         Catalog catalog = Mockito.mock(Catalog.class);
         Display display = Mockito.mock(Display.class);
 
-        new SellOneItemController(catalog, display).onBarcode("");
+        new SellOneItemController(null, display).onBarcode("");
 
         Mockito.verify(display).displayScannedEmptyBarcodeMessage();
     }
