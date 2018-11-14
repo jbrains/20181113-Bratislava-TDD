@@ -10,10 +10,10 @@ public class SellOneItemControllerTest {
         Display display = Mockito.mock(Display.class);
 
         Price matchingPrice = Price.euroCents(795);
-        Mockito.when(catalog.findPrice("12345"))
+        Mockito.when(catalog.findPrice("::barcode with matching price::"))
                 .thenReturn(matchingPrice);
 
-        new SellOneItemController(catalog, display).onBarcode("12345");
+        new SellOneItemController(catalog, display).onBarcode("::barcode with matching price::");
 
         Mockito.verify(display).displayPrice(matchingPrice);
     }
@@ -22,7 +22,7 @@ public class SellOneItemControllerTest {
     public void productNotFound() throws Exception {
         Catalog catalog = Mockito.mock(Catalog.class);
         Display display = Mockito.mock(Display.class);
-        final String missingBarcode = "12345";
+        final String missingBarcode = "::missing barcode::";
 
         Mockito.when(catalog.findPrice(missingBarcode)).thenReturn(null);
 
