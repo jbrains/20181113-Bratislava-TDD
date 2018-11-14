@@ -9,12 +9,17 @@ import java.io.StringWriter;
 public class WriteMessagesToDisplayTest {
     @Test
     public void displayPrice() throws Exception {
-        Assert.assertEquals("EUR 7.95", formattedPrice(Price.euroCents(795)));
+        Assert.assertEquals("::formatted price::", formattedPrice(Price.euroCents(795)));
     }
 
     private String formattedPrice(Price price) {
         StringWriter canvas = new StringWriter();
-        new WriterDisplay(canvas, new EnglishLanguageFormatForEurope()).displayPrice(price);
+        new WriterDisplay(canvas, new EnglishLanguageFormatForEurope() {
+            @Override
+            public String formatPrice(Price price) {
+                return "::formatted price::";
+            }
+        }).displayPrice(price);
         String[] lines = canvas.toString().split(System.lineSeparator());
         return lines[0];
     }
@@ -38,7 +43,7 @@ public class WriteMessagesToDisplayTest {
         public EnglishLanguageFormatForEurope() {
         }
 
-        String formatPrice(Price price) {
+        public String formatPrice(Price price) {
             return String.format("EUR %.2f", price.inEuro());
         }
     }
