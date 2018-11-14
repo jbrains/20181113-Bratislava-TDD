@@ -7,9 +7,6 @@ public class EnglishLanguageFormatForEurope implements MessageFormat {
 
     private final DecimalFormat decimalFormat = createDecimalFormat();
 
-    public EnglishLanguageFormatForEurope() {
-    }
-
     @Override
     public String formatPrice(Price price) {
         return decimalFormat.format(price.inEuro());
