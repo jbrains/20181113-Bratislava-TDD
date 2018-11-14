@@ -38,5 +38,4 @@ public class WriteMessagesToDisplayTest {
             out.println(messageFormat.formatPrice(price));
         }
     }
-
 }
