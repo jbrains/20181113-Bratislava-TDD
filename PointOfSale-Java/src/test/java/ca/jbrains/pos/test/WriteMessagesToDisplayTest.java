@@ -14,7 +14,7 @@ public class WriteMessagesToDisplayTest {
 
     private String formattedPrice(Price price) {
         StringWriter canvas = new StringWriter();
-        new WriterDisplay(canvas, new EnglishLanguageFormatForEurope() {
+        new WriterDisplay(canvas, new MessageFormat() {
             @Override
             public String formatPrice(Price price) {
                 return "::formatted price::";
@@ -27,22 +27,23 @@ public class WriteMessagesToDisplayTest {
     public static class WriterDisplay {
 
         private final PrintWriter out;
-        private final EnglishLanguageFormatForEurope englishLanguageFormatForEurope;
+        private final MessageFormat messageFormat;
 
-        public WriterDisplay(StringWriter stringWriter, EnglishLanguageFormatForEurope englishLanguageFormatForEurope) {
+        public WriterDisplay(StringWriter stringWriter, MessageFormat messageFormat) {
             out = new PrintWriter(stringWriter, true);
-            this.englishLanguageFormatForEurope = englishLanguageFormatForEurope;
+            this.messageFormat = messageFormat;
         }
 
         public void displayPrice(Price price) {
-            out.println(englishLanguageFormatForEurope.formatPrice(price));
+            out.println(messageFormat.formatPrice(price));
         }
     }
 
-    public static class EnglishLanguageFormatForEurope {
+    public static class EnglishLanguageFormatForEurope implements MessageFormat {
         public EnglishLanguageFormatForEurope() {
         }
 
+        @Override
         public String formatPrice(Price price) {
             return String.format("EUR %.2f", price.inEuro());
         }
