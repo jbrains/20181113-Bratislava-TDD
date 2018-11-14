@@ -18,10 +18,10 @@ public class Fraction {
 
     public static Fraction parse(String text) {
         List<Integer> fractionParts = parseFraction(text);
-        if (fractionParts.isEmpty())
-            return new Fraction(parseInt(text));
-        else
+        if (fractionParts.size() == 2)
             return new Fraction(fractionParts.get(0), fractionParts.get(1));
+        else
+            return new Fraction(fractionParts.get(0));
     }
 
     private static List<Integer> parseFraction(String text) {
@@ -30,7 +30,7 @@ public class Fraction {
             return Arrays.asList(parseInt(parts[0]), parseInt(parts[1]));
         }
         else
-            return Arrays.asList();
+            return Arrays.asList(parseInt(text));
     }
 
     private static int parseInt(String text) {
