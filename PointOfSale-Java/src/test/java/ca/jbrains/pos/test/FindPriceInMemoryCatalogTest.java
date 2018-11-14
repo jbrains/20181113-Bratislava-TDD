@@ -10,17 +10,17 @@ public class FindPriceInMemoryCatalogTest {
     @Test
     public void productFound() throws Exception {
         final Price matchingPrice = Price.euroCents(795);
-        InMemoryCatalog catalog = catalogWith("12345", matchingPrice);
+        Catalog catalog = catalogWith("12345", matchingPrice);
         Assert.assertEquals(matchingPrice, catalog.findPrice("12345"));
     }
 
     @Test
     public void productNotFound() throws Exception {
-        InMemoryCatalog catalog = catalogWithout("12345");
+        Catalog catalog = catalogWithout("12345");
         Assert.assertEquals(null, catalog.findPrice("12345"));
     }
 
-    private InMemoryCatalog catalogWith(final String barcode, Price matchingPrice) {
+    private Catalog catalogWith(final String barcode, Price matchingPrice) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
             put("not " + barcode, new Price());
             put("definitely not " + barcode, new Price());
@@ -29,7 +29,7 @@ public class FindPriceInMemoryCatalogTest {
         }});
     }
 
-    private InMemoryCatalog catalogWithout(String barcodeToAvoid) {
+    private Catalog catalogWithout(String barcodeToAvoid) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
             put("not " + barcodeToAvoid, new Price());
             put("definitely not " + barcodeToAvoid, new Price());
