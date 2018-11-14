@@ -1,4 +1,4 @@
-package ca.jbrains.pos.test.ca.jbrains.pos.test;
+package ca.jbrains.pos.test;
 
 import ca.jbrains.pos.test.Price;
 import org.junit.Assert;
