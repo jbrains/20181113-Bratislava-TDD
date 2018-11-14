@@ -26,4 +26,8 @@ public class EnglishLanguageFormatForEurope implements MessageFormat {
     public String formatProductNotFoundMessage(String barcodeNotFound) {
         return String.format("Product not found: %s", barcodeNotFound);
     }
+
+    public String formatScannedEmptyBarcodeMessage() {
+        return "Scanning error: empty barcode";
+    }
 }

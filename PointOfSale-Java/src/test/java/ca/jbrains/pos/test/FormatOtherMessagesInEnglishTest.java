@@ -11,4 +11,11 @@ public class FormatOtherMessagesInEnglishTest {
                 new EnglishLanguageFormatForEurope()
                         .formatProductNotFoundMessage("::barcode not found::"));
     }
+
+    @Test
+    public void scannedEmptyBarcodeMessage() throws Exception {
+        Assert.assertEquals("Scanning error: empty barcode",
+                new EnglishLanguageFormatForEurope()
+                        .formatScannedEmptyBarcodeMessage());
+    }
 }
