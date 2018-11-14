@@ -11,19 +11,19 @@ public class FindPriceInMemoryCatalogTest extends FindPriceInCatalogContract {
     @Override
     protected Catalog catalogWith(final String barcode, Price matchingPrice) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
-            put("not " + barcode, new Price());
-            put("definitely not " + barcode, new Price());
+            put("not " + barcode, new Price(0));
+            put("definitely not " + barcode, new Price(0));
             put(barcode, matchingPrice);
-            put("still not " + barcode + ", you idiot", new Price());
+            put("still not " + barcode + ", you idiot", new Price(0));
         }});
     }
 
     @Override
     protected Catalog catalogWithout(String barcodeToAvoid) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
-            put("not " + barcodeToAvoid, new Price());
-            put("definitely not " + barcodeToAvoid, new Price());
-            put("still not " + barcodeToAvoid + ", you idiot", new Price());
+            put("not " + barcodeToAvoid, new Price(0));
+            put("definitely not " + barcodeToAvoid, new Price(0));
+            put("still not " + barcodeToAvoid + ", you idiot", new Price(0));
         }});
     }
 
