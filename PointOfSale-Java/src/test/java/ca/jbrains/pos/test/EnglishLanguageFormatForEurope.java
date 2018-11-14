@@ -22,4 +22,8 @@ public class EnglishLanguageFormatForEurope implements MessageFormat {
         decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
         return decimalFormat;
     }
+
+    public String formatProductNotFoundMessage(String barcodeNotFound) {
+        return String.format("Product not found: %s", barcodeNotFound);
+    }
 }
