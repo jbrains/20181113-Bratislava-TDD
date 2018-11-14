@@ -1,6 +1,7 @@
 package ca.jbrains.arithmetic.spec
 
-import ca.jbrains.arithmetic.test.AddFractionsTest
+
+import ca.jbrains.arithmetic.test.Fraction
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -8,9 +9,9 @@ class AddFractionsSpec extends Specification {
     @Unroll("#augendAsText + #addendAsText = #expectedSumAsText")
     def "add fractions"(String augendAsText, String addendAsText, String expectedSumAsText) {
         given:
-        def augend = AddFractionsTest.Fraction.parse(augendAsText)
-        def addend = AddFractionsTest.Fraction.parse(addendAsText)
-        def expectedSum = AddFractionsTest.Fraction.parse(expectedSumAsText)
+        def augend = Fraction.parse(augendAsText)
+        def addend = Fraction.parse(addendAsText)
+        def expectedSum = Fraction.parse(expectedSumAsText)
 
         expect:
         augend.plus(addend).equals(expectedSum)
