@@ -32,10 +32,6 @@ public class WriteMessagesToDisplayTest {
         public void displayPrice(Price price) {
             out.println(englishLanguageFormatForEurope.formatPrice(price));
         }
-
-        private String formatPrice(Price price) {
-            return englishLanguageFormatForEurope.formatPrice(price);
-        }
     }
 
     public static class EnglishLanguageFormatForEurope {
