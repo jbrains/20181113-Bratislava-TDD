@@ -14,5 +14,8 @@ class ParseFractionSpec extends Specification {
         where:
         text || expected
         "0"  || new Fraction(0)
+        "3"  || new Fraction(3)
+        "-9"  || new Fraction(-9)
+        "-991"  || new Fraction(-991)
     }
 }

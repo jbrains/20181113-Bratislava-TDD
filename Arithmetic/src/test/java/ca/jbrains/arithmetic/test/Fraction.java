@@ -13,7 +13,11 @@ public class Fraction {
         this.denominator = denominator;
     }
     public static Fraction parse(String text) {
-        return new Fraction(0);
+        return new Fraction(parseInt(text));
+    }
+
+    private static int parseInt(String text) {
+        return Integer.parseInt(text);
     }
 
     public Fraction plus(Fraction that) {
