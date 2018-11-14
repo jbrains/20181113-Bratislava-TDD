@@ -6,21 +6,10 @@ import org.junit.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FindPriceInMemoryCatalogTest {
-    @Test
-    public void productFound() throws Exception {
-        final Price matchingPrice = Price.euroCents(795);
-        Catalog catalog = catalogWith("12345", matchingPrice);
-        Assert.assertEquals(matchingPrice, catalog.findPrice("12345"));
-    }
+public class FindPriceInMemoryCatalogTest extends FindPriceInCatalogContract {
 
-    @Test
-    public void productNotFound() throws Exception {
-        Catalog catalog = catalogWithout("12345");
-        Assert.assertEquals(null, catalog.findPrice("12345"));
-    }
-
-    private Catalog catalogWith(final String barcode, Price matchingPrice) {
+    @Override
+    protected Catalog catalogWith(final String barcode, Price matchingPrice) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
             put("not " + barcode, new Price());
             put("definitely not " + barcode, new Price());
@@ -29,7 +18,8 @@ public class FindPriceInMemoryCatalogTest {
         }});
     }
 
-    private Catalog catalogWithout(String barcodeToAvoid) {
+    @Override
+    protected Catalog catalogWithout(String barcodeToAvoid) {
         return new InMemoryCatalog(new HashMap<String, Price>() {{
             put("not " + barcodeToAvoid, new Price());
             put("definitely not " + barcodeToAvoid, new Price());
