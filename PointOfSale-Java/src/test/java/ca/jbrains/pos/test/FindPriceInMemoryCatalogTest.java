@@ -25,9 +25,16 @@ public class FindPriceInMemoryCatalogTest {
 
     @Test
     public void productNotFound() throws Exception {
-        InMemoryCatalog catalog = new InMemoryCatalog(new HashMap<String, Price>());
-
+        InMemoryCatalog catalog = catalogWithout("12345");
         Assert.assertEquals(null, catalog.findPrice("12345"));
+    }
+
+    private InMemoryCatalog catalogWithout(String barcodeToAvoid) {
+        return new InMemoryCatalog(new HashMap<String, Price>() {{
+            put("not " + barcodeToAvoid, new Price());
+            put("definitely not " + barcodeToAvoid, new Price());
+            put("still not " + barcodeToAvoid + ", you idiot", new Price());
+        }});
     }
 
     public static class InMemoryCatalog {
