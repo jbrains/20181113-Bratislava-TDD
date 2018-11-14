@@ -17,5 +17,6 @@ class ParseFractionSpec extends Specification {
         "3"  || new Fraction(3)
         "-9"  || new Fraction(-9)
         "-991"  || new Fraction(-991)
+        "1/2"  || new Fraction(1, 2)
     }
 }

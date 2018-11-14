@@ -1,5 +1,8 @@
 package ca.jbrains.arithmetic.test;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Fraction {
     private final int numerator;
     private final int denominator;
@@ -12,8 +15,22 @@ public class Fraction {
         this.numerator = numerator;
         this.denominator = denominator;
     }
+
     public static Fraction parse(String text) {
-        return new Fraction(parseInt(text));
+        List<Integer> fractionParts = parseFraction(text);
+        if (fractionParts.isEmpty())
+            return new Fraction(parseInt(text));
+        else
+            return new Fraction(fractionParts.get(0), fractionParts.get(1));
+    }
+
+    private static List<Integer> parseFraction(String text) {
+        if (text.contains("/")) {
+            String[] parts = text.split("/");
+            return Arrays.asList(parseInt(parts[0]), parseInt(parts[1]));
+        }
+        else
+            return Arrays.asList();
     }
 
     private static int parseInt(String text) {
