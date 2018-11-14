@@ -33,8 +33,7 @@ public class WriteMessagesToDisplayTest {
         }
 
         private String formatPrice(Price price) {
-            return String.format("EUR %.2f", price.priceInEuro());
+            return String.format("EUR %.2f", price.inEuro());
         }
-
     }
 }

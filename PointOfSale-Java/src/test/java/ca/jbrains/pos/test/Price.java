@@ -11,7 +11,7 @@ public class Price {
         return new Price(centsValue);
     }
 
-    public double priceInEuro() {
+    public double inEuro() {
         return centsValue / 100.0d;
     }
 
